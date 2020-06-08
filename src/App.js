@@ -1,34 +1,39 @@
 import React, { Component } from 'react';
-import PokemonsContainer from "./components/PokemonsContainer"
+import PokemonsContainer from './components/PokemonsContainer'
 import './App.css';
 
-const pokemonsUrl = "https://pokeapi.co/api/v2/pokemon?limit=151"
+const pokemonsUrl = "https://pokeapi.co/api/v2/pokemon?limit=151/"
 
-export default class App extends Component {
+class App extends Component {
 
 
   state = {
     pokemons: []
   }
 
-  componentDidMount () {
-    this.getPokemons()
+  componentDidMount() {
+    this.getPokemons();
   }
 
 
   getPokemons = () => {
     fetch(pokemonsUrl)
      .then(response => response.json())
-     .then(pokemons => this.setState({pokemons}))
+     .then(pokemons => this.setState({pokemons: pokemons.results}))
   }
+  
+
+
 
   render(){
     return (
       <div className="App">
-        <h1>Pokemon List</h1>
+        {/* <h1>Pokemon List</h1> */}
         <PokemonsContainer pokemons={this.state.pokemons}/>
       </div>
     )
   }
 }
+
+export default App;
 
