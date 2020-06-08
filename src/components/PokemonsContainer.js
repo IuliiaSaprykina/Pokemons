@@ -1,13 +1,15 @@
-import React from "react"
-import PokemonCard from "../components/PokemonCard"
+import React from "react";
+import PokemonCard from './PokemonCard'
 
 export default function PokemonsContainer ({pokemons}){
     console.log(pokemons)
-    // let pokemonsArr = pokemons.results
-    // const showPokemons = pokemonsArr.map(pokemon => <PokemonCard key={pokemon.id} {...pokemon}/>)
+    const showPokemons = pokemons.map((pokemon, i) => <PokemonCard key={i} {...pokemon}/>)
     return(
-        <div className = "pokemons-container">
-            {/* {showPokemons} */}
-        </div>
+        <>
+            <h2>Pokemons List</h2>
+            <ul className = "pokemons-container">
+                {showPokemons}
+            </ul>
+        </>
     )
 }

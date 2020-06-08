@@ -1,9 +1,10 @@
 import React from "react"
 
-export default function PokemonCard (){
+export default function PokemonCard ({name, url}){
     return (
-        <div className="pokemon-card">
-
-        </div>
+        <li className="pokemon-card">
+            <h3>{name}</h3>
+            <p>{url}</p>
+        </li>
     )
 }
