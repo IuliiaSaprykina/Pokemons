@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import PokemonsContainer from "./components/PokemonsContainer"
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const pokemonsUrl = "https://pokeapi.co/api/v2/pokemon?limit=151"
+
+export default class App extends Component {
+
+
+  state = {
+    pokemons: []
+  }
+
+  componentDidMount () {
+    this.getPokemons()
+  }
+
+
+  getPokemons = () => {
+    fetch(pokemonsUrl)
+     .then(response => response.json())
+     .then(pokemons => this.setState({pokemons}))
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <h1>Pokemon List</h1>
+        <PokemonsContainer pokemons={this.state.pokemons}/>
+      </div>
+    )
+  }
 }
 
-export default App;
